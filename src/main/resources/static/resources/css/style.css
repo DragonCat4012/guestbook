@@ -34,6 +34,12 @@ form#form {
 	padding: 0 1.25em;
 }
 
+.formError {
+	background: #ef4545;
+	color: white;
+	text-align: center;
+}
+
 .grid-container {
 	display: grid;
 	grid-template-columns: [col1-start] 25% [col2-start] 50% [col3-start] 25% [col3-end];
