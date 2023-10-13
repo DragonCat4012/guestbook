@@ -3,8 +3,19 @@ div#entries, #form {
 	width: 50%;
 }
 
+
+.body{
+	background: rgb(246,142,142);
+	background: linear-gradient(270deg, rgba(246,142,142,1) 17%, rgba(235,150,228,1) 100%); 
+}
+
 .card {
 	margin-bottom: 2em;
+}
+
+.card-header {
+	/*background: rgb(223,59,59);
+	background: linear-gradient(270deg, rgba(223,59,59,1) 17%, rgba(193,93,184,1) 100%); */
 }
 
 .card-title {
@@ -21,4 +32,57 @@ blockquote {
 
 form#form {
 	padding: 0 1.25em;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: [col1-start] 25% [col2-start] 50% [col3-start] 25% [col3-end];
+	grid-gap: 5px;
+	
+  }
+
+  /* Buttons */ 
+.button {
+	height: 40px; 
+	width: 200px; 
+	background: white;
+
+	border-radius: 10px;
+	/*
+	border-color: rgba(223,59,59,1);
+	border-width: 0.2;
+	border-style: solid;*/
+	margin: auto;
+}
+
+.button:hover {
+	color: white;
+	background: rgb(59,101,223);
+	background: linear-gradient(270deg, rgba(59,101,223,1) 17%, rgba(193,93,184,1) 100%); 
+}
+
+.buttonText:hover {
+	color: white;
+}
+
+
+.buttonText {
+	color: rgba(193,93,184,1);
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 20px;
+}
+
+  /* NavigationBar */ 
+.navBar {
+	background: rgb(223,59,59, 0.6);
+	background: linear-gradient(270deg, rgba(223,59,59,0.6) 17%, rgba(193,93,184,0.6) 50%);
+
+	border-bottom-color: white;
+	border-bottom-width: 0.2;
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+.navBarTitle {
+	color:white;
 }

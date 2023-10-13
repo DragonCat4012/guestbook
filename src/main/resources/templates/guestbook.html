@@ -9,20 +9,25 @@
 		<link rel="stylesheet" th:href="@{/resources/css/style.css}" type="text/css" />
 		<title th:text="#{guestbook.title}">Gästebuch</title>
 	</head>
-	<body>
-		<h1 class="text-center" th:text="#{guestbook.title}">Gästebuch</h1>
 
-		<div class="text-center">
-			<a sec:authorize="isAnonymous()" href="/login">Login</a>
-			<a sec:authorize="isAuthenticated()" href="/logout">Logout</a>
-		</div>
+	<body class="body">
+
+		<div class="navBar grid-container">
+			<div></div>
+			<h1 class="text-center grid-item navBarTitle" th:text="#{guestbook.title}">Gästebuch</h1>
+
+			<div class="text-center button grid-item">
+				<a class="buttonText" sec:authorize="isAnonymous()" href="/login">Login</a>
+				<a class="buttonText" sec:authorize="isAuthenticated()" href="/logout">Logout</a>
+			</div>
+	</div>
 
 		<br />
 
 		<div id="entries" class="mx-auto">			
 			<div th:each="entry, it : ${entries}" th:with="index = ${it.count}" th:fragment="entries">
 				<div class="card" th:fragment="entry" th:id="entry+${entry.id}">
-					<div class="card-header">
+					<div class="card-header" color="red">
 						<form sec:authorize="hasRole('ADMIN')" th:method="delete" th:action="@{/guestbook/{id}(id=${entry.id})}" th:attr="data-entry-id=${entry.id}">
 							<button th:title="#{guestbook.form.delete}" class="btn btn-sm float-right"
 							        hx:delete="@{/guestbook/{id}(id=${entry.id})}"
@@ -30,7 +35,7 @@
 								<span class="fas fa-times"></span>
 							</button>
 						</form>
-						<h4 th:text="${index} + '. ' + ${entry.name}" class="card-title">1. Posting</h4>
+						<h4 th:text="${index} + '. ' + ${entry.name} + ' (' + ${entry.email} + ')'"+"ee" class="card-title">1. Posting</h4>
 					</div>
 					<div class="card-body">
 						<blockquote class="entrytext" th:text="${entry.text}"></blockquote>
@@ -59,7 +64,7 @@
 				<textarea th:field="*{email}" th:errorclass="is-invalid" class="form-control" required="required"></textarea>
 				<div th:if="${#fields.hasErrors('email')}" class="invalid-feedback" th:text="#{guestbook.form.email.required}">Please provide a email.</div>
 			</div>
-			<input type="submit" class="btn btn-secondary" th:value="#{guestbook.form.submit}" value="Senden" />
+			<input type="submit" class="btn button buttonText" th:value="#{guestbook.form.submit}" value="Senden" />
 		</form>
 
 	</body>
