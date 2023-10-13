@@ -32,7 +32,7 @@ class GuestbookForm {
 
 	private final @NotBlank String name;
 	private final @NotBlank String text;
-	private final @Email String email;
+	private final @NotBlank @Email(message = "Sonmethign cool owo") String email;
 
 	/**
 	 * Creates a new {@link GuestbookForm} with the given name and text. Spring Framework will use this constructor to
@@ -43,6 +43,8 @@ class GuestbookForm {
 	 *
 	 * @param name the value to bind to {@code name}
 	 * @param text the value to bind to {@code text}
+	 * @param email the value to bind to {@code email}
+	
 	 */
 	public GuestbookForm(String name, String text, String email) {
 
