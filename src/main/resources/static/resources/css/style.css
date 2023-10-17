@@ -9,6 +9,13 @@ div#entries, #form {
 	background: linear-gradient(270deg, rgba(246,142,142,1) 17%, rgba(235,150,228,1) 100%); 
 }
 
+.body2{
+	background: rgb(246,142,142);
+	background: 
+    url('data:image/svg+xml;utf8,<svg style="transform:rotate(45deg)" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 50 60"><text x="0" y="25" font-family="Arial, Helvetica, sans-serif" fill="%23fff">UwU </text></svg>') 
+    0 0/60px 60px;
+}
+
 .card {
 	margin-bottom: 2em;
 }
@@ -32,6 +39,8 @@ blockquote {
 
 form#form {
 	padding: 0 1.25em;
+	background-color: white;
+	border-radius: 15px;
 }
 
 .formError {
@@ -68,19 +77,19 @@ form#form {
 	margin: auto;
 }
 
-.button:hover {
+.button {
 	color: white;
 	background: rgb(59,101,223);
 	background: linear-gradient(270deg, rgba(59,101,223,1) 17%, rgba(193,93,184,1) 100%); 
 }
 
-.buttonText:hover {
-	color: white;
+.button:hover {
+	color: rgb(59,101,223);
+	background: rgba(193,93,184,1);
 }
 
-
 .buttonText {
-	color: rgba(193,93,184,1);
+	color: white;
 	text-decoration: none;
 	text-transform: uppercase;
 	font-size: 20px;

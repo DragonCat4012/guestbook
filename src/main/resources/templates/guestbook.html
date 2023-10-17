@@ -26,56 +26,63 @@
 
 	<br />
 
-	<div id="entries" class="mx-auto">
-		<div th:each="entry, it : ${entries}" th:with="index = ${it.count}" th:fragment="entries">
-			<div class="card" th:fragment="entry" th:id="entry+${entry.id}">
-				<div class="card-header" color="red">
-					<form sec:authorize="hasRole('ADMIN')" th:method="delete"
-						th:action="@{/guestbook/{id}(id=${entry.id})}" th:attr="data-entry-id=${entry.id}">
-						<button th:title="#{guestbook.form.delete}" class="btn btn-sm float-right"
-							hx:delete="@{/guestbook/{id}(id=${entry.id})}" hx:target="'#entries'">
-							<span class="fas fa-times"></span>
-						</button>
-					</form>
-					<h4 th:text="${index} + '. ' + ${entry.name} + ' (' + ${entry.email} + ')'" +"ee"
-						class="card-title">1. Posting</h4>
-				</div>
-				<div class="card-body">
-					<blockquote class="entrytext" th:text="${entry.text}"></blockquote>
-				</div>
-				<div class="card-footer">
-					<footer class="date" th:text="${#temporals.format(entry.date, 'dd. MMMM yyyy - HH:mm')}">Datum
-					</footer>
+
+	<div class="body2">
+		<div id="entries" class="mx-auto">
+			<div th:each="entry, it : ${entries}" th:with="index = ${it.count}" th:fragment="entries">
+				<div class="card" th:fragment="entry" th:id="entry+${entry.id}">
+					<div class="card-header" color="red">
+						<form sec:authorize="hasRole('ADMIN')" th:method="delete"
+							th:action="@{/guestbook/{id}(id=${entry.id})}" th:attr="data-entry-id=${entry.id}">
+							<button th:title="#{guestbook.form.delete}" class="btn btn-sm float-right"
+								hx:delete="@{/guestbook/{id}(id=${entry.id})}" hx:target="'#entries'">
+								<span class="fas fa-times"></span>
+							</button>
+						</form>
+						<h4 th:text="${index} + '. ' + ${entry.name} + ' (' + ${entry.email} + ')'" +"ee"
+							class="card-title">1. Posting</h4>
+					</div>
+					<div class="card-body">
+						<blockquote class="entrytext" th:text="${entry.text}"></blockquote>
+					</div>
+					<div class="card-footer">
+						<footer class="date" th:text="${#temporals.format(entry.date, 'dd. MMMM yyyy - HH:mm')}">Datum
+						</footer>
+					</div>
 				</div>
 			</div>
 		</div>
+
+		<form method="post" role="form" class="gb-form" id="form" th:action="@{/guestbook}" th:object="${form}">
+
+			<div class="form-group">
+				<label for="name" th:text="#{guestbook.form.name}">Name</label><br />
+				<input class="form-control" placeholder='Enter name...' type="text" th:field="*{name}" />
+				<div th:if="${#fields.hasErrors('name')}" class="formError">Please provide a name.</div>
+			</div>
+
+			<div class="form-group">
+				<label for="text" th:text="#{guestbook.form.text}">text</label><br />
+				<textarea th:field="*{text}" placeholder='Enter comment...' class="form-control"></textarea>
+				<div th:if="${#fields.hasErrors('text')}" class="formError">Please provide a comment.</div>
+			</div>
+			<div class="form-group">
+				<label for="email" th:text="#{guestbook.form.email}">Email</label><br />
+				<textarea th:field="*{email}" placeholder='Enter email...' th:errorclass="fieldError"
+					class="form-control" required="required"></textarea>
+				<div th:if="${#fields.hasErrors('email')}" class="formError">Please provide a email.</div>
+			</div>
+
+			<br />
+
+			<button type="submit" method="post" th:action="@{/clearCart}" class="btn btn-defaultbuttonText button"
+				th:text="#{guestbook.form.submit}">Senden</button>
+
+
+		</form>
+
+		<br />
 	</div>
-
-	<form method="post" role="form" class="gb-form" id="form" th:action="@{/guestbook}" th:object="${form}">
-
-		<div class="form-group">
-			<label for="name" th:text="#{guestbook.form.name}">Name</label><br />
-			<input class="form-control" placeholder='Enter name...' type="text" th:field="*{name}" />
-			<div th:if="${#fields.hasErrors('name')}" class="formError">Please provide a name.</div>
-		</div>
-
-		<div class="form-group">
-			<label for="text" th:text="#{guestbook.form.text}">text</label><br />
-			<textarea th:field="*{text}" placeholder='Enter comment...' class="form-control"></textarea>
-			<div th:if="${#fields.hasErrors('text')}" class="formError">Please provide a comment.</div>
-		</div>
-		<div class="form-group">
-			<label for="email" th:text="#{guestbook.form.email}">Email</label><br />
-			<textarea th:field="*{email}" placeholder='Enter email...' th:errorclass="fieldError" class="form-control"
-				required="required"></textarea>
-			<div th:if="${#fields.hasErrors('email')}" class="formError">Please provide a email.</div>
-		</div>
-
-
-		<input type="submit" class="btn btn-default" th:value="#{guestbook.form.submit}" value="Senden" />
-	</form>
-
-	<br />
 </body>
 
 </html>
